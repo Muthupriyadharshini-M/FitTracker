@@ -1,6 +1,6 @@
 from uuid import UUID
 from sqlalchemy.orm import Session
-from models.users_model import User
+from models.models import User
 
 class UserRepository:
     
@@ -23,4 +23,3 @@ class UserRepository:
     def delete(db: Session, user_id: UUID):
         db.query(User).filter(User.id == user_id).delete()
         db.commit()
-        return True

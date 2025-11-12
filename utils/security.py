@@ -12,7 +12,7 @@ load_dotenv()
 
 security = HTTPBearer()
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+ACCESS_TOKEN_EXPIRE_MINUTES = 120
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 def hash_password(password: str) -> str:
@@ -27,12 +27,11 @@ def create_access_token(user_id: str) -> str:
     to_encode = {"sub": user_id, "exp": expire}
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
-def verify_user_access(token, requested_user_id: UUID) -> None:
+def get_current_user(token) -> str:
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         user_id: str = payload.get("sub")
-        if str(requested_user_id) != user_id:
-            raise ValueError("Invalid token")  
+        return user_id
                 
     except JWTError:
         raise ValueError("Invalid token")  

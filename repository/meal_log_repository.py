@@ -1,0 +1,34 @@
+from uuid import UUID
+from sqlalchemy.orm import Session, joinedload
+from models.models import MealLog, FoodItem
+
+class MealLogRepository:
+
+    @staticmethod
+    def create(db: Session, meal_log: MealLog):
+        db.add(meal_log)
+        db.commit()
+        db.refresh(meal_log)
+        return meal_log
+    
+    @staticmethod
+    def get_all(db: Session, user_id: UUID):
+        query = db.query(MealLog).filter(MealLog.user_id == user_id)
+        query = query.options(
+            joinedload(MealLog.food_item).load_only(FoodItem.id, FoodItem.name)
+        )
+        meal_logs = query.all()
+        return meal_logs
+    
+    @staticmethod
+    def get_by_id(db: Session, user_id: UUID, meal_log_id: UUID):
+        query = db.query(MealLog).filter(MealLog.user_id == user_id, MealLog.id == meal_log_id)
+        query = query.options(
+            joinedload(MealLog.food_item).load_only(FoodItem.id, FoodItem.name)
+        )
+        meal_log = query.all()[0]
+        return meal_log
+
+
+
+    
