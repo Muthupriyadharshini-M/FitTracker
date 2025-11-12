@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from fastapi.security import OAuth2PasswordBearer
 from utils.security import get_current_user
 from services.meal_log_service import MealLogService
-from schemas.schema import MealLogCreateIn, CreateOut, MealLogsGetOut, MealLogGetOut
+from schema.schema import MealLogCreateIn, CreateOut, MealLogsGetOut, MealLogGetOut
 from fastapi import APIRouter, Depends, HTTPException
 
 router = APIRouter()

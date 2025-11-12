@@ -5,7 +5,7 @@ from services.user_service import UserService
 from fastapi.security import OAuth2PasswordBearer
 from fastapi import APIRouter, Depends, HTTPException, Request
 from utils.security import create_access_token, get_current_user
-from schemas.schema import UserCreateIn, CreateOut, UserLogin, UserLoginOut, GetUserOut
+from schema.schema import UserCreateIn, CreateOut, UserLogin, UserLoginOut, GetUserOut
 
 router = APIRouter()
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")

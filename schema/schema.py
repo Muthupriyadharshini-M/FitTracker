@@ -3,7 +3,7 @@ from pydantic import BaseModel, condecimal
 from uuid import UUID
 from datetime import datetime
 
-# These are schemas associated with API requests
+# These are schema associated with API requests
 class UserCreateIn(BaseModel):
     username: str
     email: str
