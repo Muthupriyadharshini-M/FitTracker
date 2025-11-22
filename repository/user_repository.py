@@ -20,6 +20,12 @@ class UserRepository:
         return user
     
     @staticmethod
+    def update(db: Session, user: User):
+        db.commit()
+        db.refresh(user)
+        return user
+    
+    @staticmethod
     def delete(db: Session, user_id: UUID):
         db.query(User).filter(User.id == user_id).delete()
         db.commit()

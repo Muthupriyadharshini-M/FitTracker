@@ -26,9 +26,26 @@ class MealLogRepository:
         query = query.options(
             joinedload(MealLog.food_item).load_only(FoodItem.id, FoodItem.name)
         )
-        meal_log = query.all()[0]
+        meal_logs = query.all()
+        if not len(meal_logs):
+            raise ValueError('Meal log wasn\'t found')
+
+        return meal_logs[0]
+    
+    @staticmethod
+    def update(db: Session, meal_log: MealLog):
+        db.commit()
+        db.refresh(meal_log)
         return meal_log
 
+    @staticmethod
+    def delete(db: Session, user_id: UUID, meal_log_id: UUID):
+        result = db.query(MealLog).filter(
+            MealLog.id == meal_log_id,
+            MealLog.user_id == user_id
+        ).delete()
+        
+        db.commit()
 
 
     

@@ -7,15 +7,29 @@ from repository.user_repository import UserRepository
 class UserService:
     
     @staticmethod
-    def register(db: Session, username: str, email: str, password: str) -> None:
+    def register(db: Session, username: str, email: str, password: str, weight_in_kg: float) -> None:
         # Check if email already exists
         if UserService.get_by_email(db, email):
             raise ValueError("Email already registered")
         
         hashed_password = hash_password(password)
-        user = User(username=username, email=email, hashed_password=hashed_password)
+        user = User(username=username, email=email, hashed_password=hashed_password, weight=weight_in_kg)
         user = UserRepository.create(db, user)
         return user
+    
+    @staticmethod
+    def update(db: Session, user_id: UUID, username: str, email:str, password: str, weight_in_kg: float):
+        
+        user = UserService.get_by_id(db, user_id)
+        if not user:
+            raise ValueError("User not found")
+        
+        user.username = username
+        user.email = email
+        user.password = password
+        user.weight = weight_in_kg
+
+        return UserRepository.update(db, user)
     
     @staticmethod
     def authenticate(db: Session, email: str, password: str):
@@ -37,5 +51,6 @@ class UserService:
     @staticmethod
     def delete(db: Session, user_id: UUID):
         UserRepository.delete(db, user_id)
+    
 
     

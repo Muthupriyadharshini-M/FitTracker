@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from api.v1 import user_routes, meal_log_routes
+from api.v1 import user_routes, meal_log_routes, exercise_log_routes
 
 app = FastAPI(
     title="FitTracker API",
@@ -10,6 +10,7 @@ app = FastAPI(
 # Include API routers
 app.include_router(user_routes.router, prefix="/api/v1", tags=["users"])
 app.include_router(meal_log_routes.router, prefix="/api/v1", tags=["meal_logs"])
+app.include_router(exercise_log_routes.router, prefix="/api/v1", tags=["exercise_logs"])
 
 @app.get("/")
 async def root():

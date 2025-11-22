@@ -1,0 +1,56 @@
+[
+  {
+    "id": "e27ac10b-11aa-4372-a567-0e02b2c3d400",
+    "name": "Walking (Normal Pace)",
+    "met": 3.5,
+    "category": "cardio"
+  },
+  {
+    "id": "e27ac10b-11aa-4372-a567-0e02b2c3d401",
+    "name": "Running (Slow Jog)",
+    "met": 7.0,
+    "category": "cardio"
+  },
+  {
+    "id": "e27ac10b-11aa-4372-a567-0e02b2c3d402",
+    "name": "Running (Fast)",
+    "met": 9.8,
+    "category": "cardio"
+  },
+  {
+    "id": "e27ac10b-11aa-4372-a567-0e02b2c3d403",
+    "name": "Cycling (Moderate)",
+    "met": 6.8,
+    "category": "cardio"
+  },
+  {
+    "id": "e27ac10b-11aa-4372-a567-0e02b2c3d404",
+    "name": "Strength Training (General)",
+    "met": 6.0,
+    "category": "strength"
+  },
+  {
+    "id": "e27ac10b-11aa-4372-a567-0e02b2c3d405",
+    "name": "Strength Training (Heavy)",
+    "met": 8.0,
+    "category": "strength"
+  },
+  {
+    "id": "e27ac10b-11aa-4372-a567-0e02b2c3d40a",
+    "name": "Yoga (Light)",
+    "met": 2.8,
+    "category": "flexibility"
+  },
+  {
+    "id": "e27ac10b-11aa-4372-a567-0e02b2c3d40b",
+    "name": "Yoga (Power Yoga)",
+    "met": 4.2,
+    "category": "flexibility"
+  },
+  {
+    "id": "e27ac10b-11aa-4372-a567-0e02b2c3d40c",
+    "name": "Skipping Rope",
+    "met": 10.0,
+    "category": "cardio"
+  }
+]

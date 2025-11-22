@@ -4,12 +4,13 @@ from uuid import UUID
 from datetime import datetime
 
 # These are schema associated with API requests
-class UserCreateIn(BaseModel):
+class UserCreateUpdateIn(BaseModel):
     username: str
     email: str
     password: str
+    weight_in_kg: float
 
-class CreateOut(BaseModel):
+class CreateUpdateDeleteOut(BaseModel):
     success: bool
     id: UUID
 
@@ -33,7 +34,7 @@ class GetUserOut(BaseModel):
     class Config:
         orm_mode = True
 
-class MealLogCreateIn(BaseModel):
+class MealLogCreateUpdateIn(BaseModel):
     food_item_id: UUID  
     quantity_in_grams: int
     consumed_at: Optional[datetime] = None
@@ -64,6 +65,35 @@ class MealLogGetOut(BaseModel):
 
 class MealLogsGetOut(BaseModel):
     meal_logs: list[MealLogGetOut]
+
+    class Config:
+        orm_mode = True
+
+class ExerciseLogCreateUpdateIn(BaseModel):
+    exercise_item_id: UUID
+    duration_in_minutes: int
+    performed_at: Optional[datetime] = None
+
+class ExerciseItemOut(BaseModel):
+    id: UUID
+    name: str
+
+    class Config:
+        orm_mode = True
+    
+class ExerciseLogGetOut(BaseModel):
+    id: UUID
+    created_at: datetime
+    updated_at: Optional[datetime] = None 
+    duration_in_minutes: int
+    calories_burned: condecimal(gt=-1)
+    exercise_item: ExerciseItemOut
+
+    class Config:
+        orm_mode = True
+
+class ExerciseLogsGetOut(BaseModel):
+    exercise_logs: list[ExerciseLogGetOut]
 
     class Config:
         orm_mode = True

@@ -1,12 +1,9 @@
 import os
 import bcrypt
-import json
-from uuid import UUID
 from jose import jwt, JWTError
-from fastapi import Depends
+from fastapi.security import HTTPBearer
 from dotenv import load_dotenv
 from datetime import datetime, timedelta, timezone
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
 load_dotenv()
 
